@@ -1,551 +1,125 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Light Theme Preview</title>
 
-  <!-- Sidebar Styles -->
+  <!-- Global Resets / Fonts -->
   <style>
-    html {
-      scroll-padding-top: 50px;
-    }
-
-    header {
-      display: none !important;
-    }
-
-    main {
-      padding: 0;
-      margin: 0;
-    }
-
-    main img {
-      max-width: 100%;
-    }
-
+    html { scroll-padding-top: 50px; scroll-behavior: smooth; }
+    header { display: none !important; }
+    main { padding: 0; margin: 0; }
+    main img { max-width: 100%; }
     @media (min-width: 992px) {
-      body {
-        padding-right: 400px;
-        padding-left: 200px;
-      }
+      body { padding-right: 0; padding-left: 0; }
     }
-
-    section {
-      padding: 0;
-      margin: 0;
-    }
-
-    aside * {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
-    }
-
+    section { padding: 0; margin: 0; }
     @font-face {
       font-family: 'Sarmady';
       src: url('https://pub-0f17ff3f2c9b4a9bb5653438766c16f3.r2.dev/Sarmady-RegularCompressed.otf') format('woff');
       font-weight: normal;
       font-style: normal;
     }
-
     * {
       box-sizing: border-box;
       padding: 0;
       margin: 0;
       font-family: 'Sarmady', sans-serif !important;
     }
-
-    aside img {
-      max-width: 100%;
-    }
-
-    aside {
-      direction: rtl;
-      position: fixed;
-      right: 200px;
-      top: 0px;
-      height: 100vh;
-      background-color: #fff;
-      width: 200px;
-      border-left: 1px solid #ccc;
-      box-shadow: -10px 0px 20px -18px #3d6498;
-      transition: all 0.4s 0s cubic-bezier(0.23, 1, 0.320, 1);
-      z-index: 18;
-    }
-
-    aside .overlay {
-      position: fixed;
-      height: 100dvh;
-      width: 100dvw;
-      background-color: #00000089;
-      right: 200px;
-      top: 0;
-      z-index: -1;
-      isolation: isolate;
-      display: none;
-      backdrop-filter: blur(10px);
-    }
-
-    aside>button {
-      position: absolute;
-      top: 20px;
-      left: 0;
-      transform: translateX(-100%);
-      background-color: #3d6498;
-      color: #fff;
-      outline: none;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 10px 0px 0px 10px;
-      display: none;
-      cursor: pointer;
-      font-size: 20px;
-      border: 1px solid #ccc;
-    }
-
-    @media (max-width: 992px) {
-      aside {
-        right: 0;
-        transform: translateX(100%);
-      }
-
-      aside.shown {
-        transform: translateX(0);
-      }
-
-      aside>button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      aside>button span {
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      aside>button span:last-child {
-        display: none;
-      }
-
-      aside.shown>button span:first-child {
-        display: none;
-      }
-
-      aside.shown>button span:last-child {
-        display: flex;
-      }
-
-      aside.shown .overlay {
-        display: unset;
-      }
-    }
-
-    aside a {
-      text-decoration: none;
-      border-left: 4px solid transparent;
-      font-weight: normal !important;
-    }
-
-    aside a:hover {
-      color: #3d6498;
-    }
-
-    aside .owner-info {
-      padding: 20px;
-      margin-bottom: 30px;
-      margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    aside .owner-info a span {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      margin-bottom: 10px;
-    }
-
-    aside .owner-info h4 {
-      color: #3d6498;
-      font-size: 34px;
-    }
-
-    aside .owner-info p {
-      color: #666;
-      font-size: 24px;
-    }
-
-    aside nav {
-      display: flex;
-      flex-direction: column;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 20px;
-    }
-
-    aside nav a {
-      padding: 5px 20px;
-      color: #000;
-      font-size: 24px;
-    }
-
-    aside>*:not(:nth-child(2)) a:hover {
-      background-color: #3d64981c;
-      transition: all 0.4s 0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      border-left: 4px solid #3d6498;
-      color: #3d6498;
-    }
-
-    aside .more-links {
-      display: flex;
-      flex-direction: column;
-      padding-top: 10px;
-    }
-
-    aside .more-links a {
-      padding: 5px 20px;
-      color: #000;
-      font-size: 24px;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    img, video, svg { max-width: 100%; }
+    ul { list-style: none; }
   </style>
 
   <!-- Header / Banner Styles -->
   <style>
     .text-banner,
-    .text-banner * {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      direction: rtl;
-    }
-
-    :root {
-      --main-transition: all 0.4s 0s cubic-bezier(.4, .61, .43, .96);
-    }
-
-    .text-banner * {
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
-      font-family: 'Sarmady', sans-serif !important;
-    }
-
-    .text-banner {
-      padding-top: 0px !important;
-      margin-top: 0 !important;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    .text-banner p {
-      font-size: 34px;
-      color: #000;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      font-weight: normal !important;
-    }
-
-    .text-banner p span {
-      color: #6f6f6f;
-    }
-
+    .text-banner * { box-sizing: border-box; margin: 0; padding: 0; direction: rtl; }
+    :root { --main-transition: all 0.4s 0s cubic-bezier(.4, .61, .43, .96); }
+    .text-banner { padding: 0 20px; }
+    .text-banner p { font-size: 34px; color: #000; margin: 20px 0; font-weight: normal !important; }
+    .text-banner p span { color: #6f6f6f; }
     .text-banner .text-banner-header {
-      background-color: #f5f5f5;
-      width: fit-content;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 6px 10px;
-      border-radius: 40px;
+      background-color: #f5f5f5; width: fit-content; display: flex; align-items: center;
+      gap: 12px; padding: 6px 10px; border-radius: 40px;
     }
-
     .text-banner .text-banner-header h4 {
-      font-weight: normal;
-      font-size: 22px;
-      padding-right: 20px;
-      position: relative;
-      color: #000;
+      font-weight: normal; font-size: 22px; padding-right: 20px; position: relative; color: #000;
     }
-
     .text-banner .text-banner-header h4::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateX(50%) translateY(-50%);
-      background-color: rgb(0, 190, 0);
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      z-index: 2;
+      content: ""; position: absolute; top: 50%; right: 10px; transform: translate(50%, -50%);
+      background-color: rgb(0, 190, 0); width: 7px; height: 7px; border-radius: 50%;
     }
-
     .text-banner .text-banner-header h4::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateX(50%) translateY(-50%);
-      background-color: rgb(0, 190, 0);
-      border-radius: 50%;
-      animation: live 2s linear 0s infinite forwards;
+      content: ""; position: absolute; top: 50%; right: 10px; transform: translate(50%, -50%);
+      background-color: rgb(0, 190, 0); border-radius: 50%; animation: live 2s linear infinite;
     }
-
-    @keyframes live {
-      0% {
-        width: 0;
-        height: 0;
-        opacity: 1;
-      }
-
-      100% {
-        width: 15px;
-        height: 15px;
-        opacity: 0;
-      }
-    }
-
+    @keyframes live { 0% { width: 0; height: 0; opacity: 1; } 100% { width: 15px; height: 15px; opacity: 0; } }
     .text-banner .text-banner-header a {
-      font-family: 'Sarmady', sans-serif !important;
-      font-size: 22px;
-      padding: 6px 16px;
-      border-radius: 30px;
-      background-color: #fff;
-      border: none;
-      cursor: pointer;
-      transition: var(--main-transition);
-      transition-duration: 0.4s;
-      text-decoration: none;
+      font-size: 22px; padding: 6px 16px; border-radius: 30px; background: #fff; border: none;
+      cursor: pointer; transition: var(--main-transition); text-decoration: none;
     }
-
-    .text-banner .text-banner-header a:hover,
-    .text-banner .text-banner-header a:focus-visible .text-banner .text-banner-header a:focus {
-      background-color: #3d6498;
-      color: #fff;
-    }
-
-    .text-banner .text-banner-buttons {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .text-banner .text-banner-header a:hover { background: #3d6498; color: #fff; }
+    .text-banner .text-banner-buttons { display: flex; align-items: center; gap: 10px; }
     .text-banner .text-banner-buttons a {
-      font-size: 22px;
-      padding: 5px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: normal !important;
+      font-size: 22px; padding: 5px 20px; border-radius: 30px; text-decoration: none; font-weight: normal !important;
     }
-
-    .text-banner .text-banner-buttons a:first-child {
-      background-color: #3d6498;
-      color: #fff;
-    }
-
-    .text-banner .text-banner-buttons a:last-child {
-      background-color: #f5f5f5;
-      color: #000;
-    }
+    .text-banner .text-banner-buttons a:first-child { background: #3d6498; color: #fff; }
+    .text-banner .text-banner-buttons a:last-child { background: #f5f5f5; color: #000; }
   </style>
 
   <!-- Services Styles -->
   <style>
-    header>div>div>div>div>div:nth-child(2) {
-      width: 600px !important;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
+    header>div>div>div>div>div:nth-child(2) { width: 600px !important; margin: 0 auto; }
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
-
     @font-face {
       font-family: 'Watad';
       src: url('https://pub-a5b520a3b67d447c905aa79baef76372.r2.dev/V2F0YWQub3RmMTY1ODA0NDU1NTg1MQ%3D%3D.otf') format('woff');
       font-weight: normal;
       font-style: normal;
     }
-
-    * {
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
-      font-family: 'Sarmady', sans-serif !important;
-    }
-
-    header,
-    footer {
-      direction: rtl;
-    }
-
-    ::selection {
-      background-color: var(--main-color);
-      color: var(--bg-color);
-    }
-
-    :root {
-      --bg-color: #fbfbfb;
-      --main-transition: all 0.4s 0s cubic-bezier(.4, .61, .43, .96);
-      --main-color: #3d6498;
-      --card-bg: #fff;
-    }
-
+    header, footer { direction: rtl; }
+    ::selection { background: var(--main-color); color: var(--bg-color); }
+    :root { --bg-color: #fbfbfb; --main-transition: all 0.4s 0s cubic-bezier(.4, .61, .43, .96); --main-color: #3d6498; --card-bg: #fff; }
     .services {
-      max-width: 100%;
-      margin-left: 30px;
-      margin-right: 30px;
-      color: #000;
-      direction: rtl !important;
-      padding-top: 20px !important;
-      padding-bottom: 20px !important;
-      border-top: 1px solid #303030;
+      max-width: 100%; margin: 0 30px; color: #000; direction: rtl !important;
+      padding: 20px 0 !important; border-top: 1px solid #303030;
     }
-
-    img,
-    video,
-    svg {
-      max-width: 100%;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    .services .section-header {
-      margin-bottom: 0px;
-      font-size: 34px;
-      font-weight: normal;
-      color: #000;
-    }
-
+    .services .section-header { margin-bottom: 0; font-size: 34px; font-weight: normal; color: #000; }
     .services .services-links {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(160px, 1fr));
-      gap: 10px;
+      display: grid; grid-template-columns: repeat(2, minmax(160px, 1fr)); gap: 10px;
     }
-
-    @media (max-width: 1200px) and (min-width: 992px) {
-      .services .services-links {
-        grid-template-columns: repeat(1, minmax(160px, 1fr));
-      }
-    }
-
-    @media (max-width: 500px) {
-      .services .services-links {
-        grid-template-columns: repeat(1, minmax(160px, 1fr));
-      }
-    }
-
-    .services ul li {
-      background-color: #fff;
-      border-radius: 6px;
-      box-shadow: 0px 2px 8px 0px #ddd;
-      overflow: hidden;
-    }
-
+    @media (max-width: 1200px) and (min-width: 992px) { .services .services-links { grid-template-columns: repeat(1, minmax(160px, 1fr)); } }
+    @media (max-width: 500px) { .services .services-links { grid-template-columns: repeat(1, minmax(160px, 1fr)); } }
+    .services ul li { background: #fff; border-radius: 6px; box-shadow: 0px 2px 8px 0px #ddd; overflow: hidden; }
     .services ul li a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-decoration: none;
-      color: #000;
-      padding: 8px 12px;
-      position: relative;
-      transition: var(--main-transition);
-      border: 2px solid transparent;
-      border-bottom: none;
-      border-radius: 6px;
+      display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: #000;
+      padding: 8px 12px; position: relative; transition: var(--main-transition);
+      border: 2px solid transparent; border-bottom: none; border-radius: 6px;
     }
-
-    .services ul li a:hover {
-      color: #3d6498;
-      border-color: #3d6498;
-    }
-
+    .services ul li a:hover { color: #3d6498; border-color: #3d6498; }
     .services ul li a::before {
-      position: absolute;
-      content: "";
-      bottom: 0;
-      left: 0;
-      background-color: #3d6498;
-      height: 2px;
-      width: 0%;
+      position: absolute; content: ""; bottom: 0; left: 0; background: #3d6498; height: 2px; width: 0%;
       transition: var(--main-transition);
     }
-
-    .services ul li a:hover::before {
-      width: 100%;
-    }
-
+    .services ul li a:hover::before { width: 100%; }
     .services ul li svg {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: #000;
-      padding: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--main-transition);
+      width: 30px; height: 30px; border-radius: 50%; background: #000; padding: 5px;
+      display: flex; align-items: center; justify-content: center; transition: var(--main-transition);
     }
-
-    .services ul li a:hover svg {
-      background-color: #3d6498;
-    }
-
-    .services ul li a .icon-text {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .services ul li a .text {
-      font-weight: normal !important;
-      font-size: 24px;
-    }
-
-    .services ul li a span {
-      color: #808080;
-      background-color: #303030;
-      padding-left: 5px;
-      padding-right: 5px;
-      border-radius: 4px;
-    }
-
+    .services ul li a:hover svg { background: #3d6498; }
+    .services ul li a .icon-text { display: flex; align-items: center; gap: 10px; }
+    .services ul li a .text { font-weight: normal !important; font-size: 24px; }
+    .services ul li a span { color: #808080; background: #303030; padding: 0 5px; border-radius: 4px; }
     @media (max-width: 600px) {
-      .services .section-header {
-        text-align: right !important;
-        margin-bottom: 10px;
-        width: fit-content;
-      }
-
-      .services ul li svg {
-        font-size: 14px;
-      }
+      .services .section-header { text-align: right !important; margin-bottom: 10px; width: fit-content; }
+      .services ul li svg { font-size: 14px; }
     }
   </style>
 
   <!-- Stats Styles -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Asimovian&family=Beiruti:wght@200..900&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
     :root {
       --stats-icon-main-bg-color: #3d6498;
       --stats-icon-yellow-bg-color: rgb(168, 168, 0);
@@ -554,771 +128,196 @@
       --stats-icon-yt-bg-color: #f00;
       --stats-text-color: #000;
     }
-
-    .stats * {
-      color: var(--stats-text-color) !important;
-      font-family: "IBM Plex Sans Arabic", sans-serif !important;
-    }
-
+    .stats * { color: var(--stats-text-color) !important; font-family: "IBM Plex Sans Arabic", sans-serif !important; }
     .stats {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      flex-direction: row-reverse;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding: 20px;
+      display: flex; align-items: center; justify-content: space-around; flex-direction: row-reverse;
+      gap: 20px; flex-wrap: wrap; padding: 20px;
     }
-
-    .stats .stat {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 5px;
-      color: var(--stats-text-color);
-    }
-
-    .stats .stat .icon {
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      aspect-ratio: 1;
-      transition: all 0.2s 0s linear;
-    }
-
-    .stats .stat:first-child .icon {
-      background-color: var(--stats-icon-yellow-bg-color);
-    }
-
-    .stats .stat:nth-child(2) .icon {
-      background-color: var(--stats-icon-green-bg-color);
-    }
-
-    .stats .stat:nth-child(3) .icon {
-      background-color: var(--stats-icon-smile-bg-color);
-    }
-
-    .stats .stat:nth-child(4) .icon {
-      background-color: var(--stats-icon-main-bg-color);
-    }
-
-    .stats .stat:last-child .icon {
-      background-color: var(--stats-icon-yt-bg-color);
-    }
-
-    .stats .stat img {
-      transition: all 0.2s 0s linear;
-      width: 40px;
-    }
-
-    .stats .stat:hover .icon img {
-      transform: scale(1.1);
-    }
-
-    .stats .stat h2 {
-      font-size: 40px;
-      direction: rtl;
-      font-weight: normal !important;
-    }
-
-    .stats .stat p {
-      font-weight: normal !important;
-    }
-
-    @media (max-width: 1300px) {
-      .stats {
-        gap: 30px 0px;
-      }
-
-      .stats .stat {
-        min-width: calc(100% / 5)
-      }
-    }
-
-    @media (max-width: 1200px) and (min-width: 992px) {
-      .stats {
-        gap: 30px 0px;
-      }
-
-      .stats .stat {
-        min-width: calc(100% / 3)
-      }
-
-      .stats .stat h2 {
-        font-size: 24px;
-      }
-
-      .stats .stat img {
-        width: 30px;
-      }
-    }
-
-    @media (max-width: 992px) {
-      .stats {
-        gap: 30px 0px;
-      }
-
-      .stats .stat {
-        min-width: calc(100% / 5)
-      }
-    }
-
-    @media (max-width: 767px) {
-      .stats {
-        gap: 30px 0px;
-      }
-
-      .stats .stat {
-        min-width: calc(100% / 4)
-      }
-
-      .stats .stat h2 {
-        font-size: 24px;
-      }
-
-      .stats .stat img {
-        width: 30px;
-      }
-    }
-
-    @media (max-width: 500px) {
-      .stats {
-        gap: 30px 0px;
-      }
-
-      .stats .stat {
-        min-width: calc(100% / 3)
-      }
-    }
+    .stats .stat { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
+    .stats .stat .icon { padding: 15px; display: flex; align-items: center; justify-content: center; border-radius: 50%; aspect-ratio: 1; transition: all 0.2s linear; }
+    .stats .stat:first-child .icon { background: var(--stats-icon-yellow-bg-color); }
+    .stats .stat:nth-child(2) .icon { background: var(--stats-icon-green-bg-color); }
+    .stats .stat:nth-child(3) .icon { background: var(--stats-icon-smile-bg-color); }
+    .stats .stat:nth-child(4) .icon { background: var(--stats-icon-main-bg-color); }
+    .stats .stat:last-child .icon { background: var(--stats-icon-yt-bg-color); }
+    .stats .stat img { transition: all 0.2s linear; width: 40px; }
+    .stats .stat:hover .icon img { transform: scale(1.1); }
+    .stats .stat h2 { font-size: 40px; direction: rtl; font-weight: normal !important; }
+    .stats .stat p { font-weight: normal !important; }
+    @media (max-width: 1300px) { .stats { gap: 30px 0; } .stats .stat { min-width: calc(100% / 5); } }
+    @media (max-width: 1200px) and (min-width: 992px) { .stats { gap: 30px 0; } .stats .stat { min-width: calc(100% / 3); } .stats .stat h2 { font-size: 24px; } .stats .stat img { width: 30px; } }
+    @media (max-width: 992px) { .stats { gap: 30px 0; } .stats .stat { min-width: calc(100% / 5); } }
+    @media (max-width: 767px) { .stats { gap: 30px 0; } .stats .stat { min-width: calc(100% / 4); } .stats .stat h2 { font-size: 24px; } .stats .stat img { width: 30px; } }
+    @media (max-width: 500px) { .stats { gap: 30px 0; } .stats .stat { min-width: calc(100% / 3); } }
   </style>
 
   <!-- University Slider Styles -->
   <style>
-    h2.trusted {
-      text-align: center;
-      color: black;
-      font-size: 30px;
-      font-weight: normal;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    }
-
-    .slide-track img {
-      filter: grayscale(100%);
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-    }
-
-    .slider {
-      direction: ltr !important;
-    }
-
-    .slide-track {
-      width: 100%;
-      margin-right: auto;
-      margin-left: auto;
-      display: flex;
-      background: transparent;
-      position: relative;
-    }
-
+    h2.trusted { text-align: center; color: black; font-size: 30px; font-weight: normal; margin: 10px 0 20px; }
+    .slide-track img { filter: grayscale(100%); width: 100px; height: 100px; object-fit: contain; }
+    .slider { direction: ltr !important; margin: 0 0 10px; overflow: hidden; }
+    .slide-track { width: 100%; margin: 0 auto; display: flex; background: transparent; position: relative; }
     .slide-track::before {
-      content: "";
-      position: absolute;
-      width: 120%;
-      height: 120%;
+      content: ""; position: absolute; width: 120%; height: 120%;
       background-image: linear-gradient(to right, #fbfbfb, transparent 50%, #fbfbfb 100%);
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
+      left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2;
     }
-
-    .slider {
-      margin-top: 0;
-      margin-bottom: 10px;
-      overflow: hidden;
-    }
-
-    .slider-container {
-      display: flex;
-      flex-direction: row-reverse;
-      gap: 1em;
-      animation: scroll 30s linear infinite;
-      direction: ltr !important;
-    }
-
-    .slide {
-      margin-right: 20px;
-      margin-left: 20px;
-      height: 150px;
-      width: 130px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .slide img {
-      height: 80px;
-    }
-
-    .slide span {
-      text-align: center;
-      font-size: 20px;
-      color: #000;
-      font-weight: normal;
-    }
-
-    @keyframes scroll {
-      0% {
-        transform: translateX(-50%);
-      }
-
-      100% {
-        transform: translateX(0%);
-      }
-    }
+    .slider-container { display: flex; flex-direction: row-reverse; gap: 1em; animation: scroll 30s linear infinite; direction: ltr !important; }
+    .slide { margin: 0 20px; height: 150px; width: 130px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .slide img { height: 80px; }
+    .slide span { text-align: center; font-size: 20px; color: #000; font-weight: normal; }
+    @keyframes scroll { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
   </style>
 
   <!-- Header Custom Styles -->
   <style>
-    header>div>div>div>div>div:nth-child(2) {
-      width: 600px !important;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
+    header>div>div>div>div>div:nth-child(2) { width: 600px !important; margin: 0 auto; }
     header {
-      /* display: none !important; */
-      height: 80px;
-      display: flex;
-      align-items: center;
-      background-color: white;
-      box-shadow: 0px 3px 26px -19px var(--main-color);
-      position: sticky;
-      top: 0;
-      left: 0;
-      z-index: 20;
+      height: 80px; display: flex; align-items: center; background: white;
+      box-shadow: 0px 3px 26px -19px var(--main-color); position: sticky; top: 0; left: 0; z-index: 20;
     }
-
-    header a {
-      font-size: 22px !important
-    }
-
-    header>div {
-      height: 100%;
-      width: 100%;
-      display: flex;
-      align-items: center;
-    }
-
-    header>div>div>div>div>div:nth-child(2) {
-      margin-right: unset !important;
-      width: fit-content !important;
-    }
-
-    header>div>div>div>div {
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-    }
-
-    @media(max-width: 640px) {
-      header>div>div>div>div>div:nth-child(2) {
-        margin-right: auto !important;
-      }
-    }
-
-    header div>h1 {
-      width: fit-content !important;
-    }
-
-    .header__grid header--left {
-      grid-template-columns: unset !important;
-    }
+    header a { font-size: 22px !important; }
+    header>div { height: 100%; width: 100%; display: flex; align-items: center; }
+    header>div>div>div>div>div:nth-child(2) { margin-right: unset !important; width: fit-content !important; }
+    header>div>div>div>div { padding: 0 !important; }
+    @media(max-width: 640px) { header>div>div>div>div>div:nth-child(2) { margin-right: auto !important; } }
+    header div>h1 { width: fit-content !important; }
+    .header__grid header--left { grid-template-columns: unset !important; }
   </style>
 
   <!-- Articles Styles -->
   <style>
     .arts-and-src {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      max-width: 100%;
-      margin-left: 20px;
-      margin-right: 20px;
-      color: #000;
-      direction: rtl !important;
-      padding-top: 0;
-      padding-bottom: 0;
-      border-top: 1px solid #303030;
+      margin: 20px; color: #000; direction: rtl !important;
+      padding: 0; border-top: 1px solid #303030;
     }
-
-    .arts-and-src .section-header {
-      font-size: 34px;
-      margin-bottom: 0px;
-      margin-top: 15px;
-      width: fit-content !important;
-      font-weight: normal;
-    }
-
-    .arts-and-src ul li {
-      margin-top: 16px;
-    }
-
-    .arts-and-src ul li * {
-      font-weight: 200 !important;
-    }
-
+    .arts-and-src .section-header { font-size: 34px; margin: 15px 0 0; width: fit-content !important; font-weight: normal; }
+    .arts-and-src ul li { margin-top: 16px; }
+    .arts-and-src ul li * { font-weight: 200 !important; }
     .arts-and-src ul li a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      color: #f9f8ff;
-      text-decoration: none;
-      color: #000;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      text-decoration: none; color: #000;
     }
-
-    .arts-and-src ul li a h4 {
-      font-size: 28px !important;
-      margin-bottom: 0 !important;
-      color: #000;
-      transition: var(--main-transition);
-    }
-
-    .arts-and-src ul li a:hover h4 {
-      color: #3d6498;
-    }
-
+    .arts-and-src ul li a h4 { font-size: 28px !important; margin-bottom: 0 !important; color: #000; transition: var(--main-transition); }
+    .arts-and-src ul li a:hover h4 { color: #3d6498; }
     .arts-and-src ul li a .line {
-      height: 3px;
-      background-color: #8b8b8b;
-      flex: 1;
-      position: relative;
-      transition: var(--main-transition);
-      border-radius: 20px;
-      overflow: hidden;
+      height: 3px; background: #8b8b8b; flex: 1; position: relative; transition: var(--main-transition);
+      border-radius: 20px; overflow: hidden;
     }
-
     .arts-and-src ul li a .line::before {
-      position: absolute;
-      content: "";
-      height: 100%;
-      width: 0%;
-      left: 0;
-      top: 0;
-      transition: var(--main-transition);
-      border-radius: 20px;
-      background-color: #3d6498;
+      position: absolute; content: ""; height: 100%; width: 0%; left: 0; top: 0;
+      transition: var(--main-transition); border-radius: 20px; background: #3d6498;
     }
-
-    .arts-and-src ul li a:hover .line::before {
-      width: 100%;
-    }
-
-    .arts-and-src ul li a .date {
-      transition: var(--main-transition);
-      color: #8b8b8b;
-      font-size: 22px !important;
-    }
-
-    .arts-and-src ul li a:hover .date {
-      color: #3d6498;
-    }
-
-    @media (max-width: 1200px) and (min-width: 992px) {
-      .arts-and-src ul li a h4 {
-        font-size: 22px !important;
-      }
-
-      .arts-and-src ul li a .date {
-        font-size: 20px !important;
-      }
-    }
-
+    .arts-and-src ul li a:hover .line::before { width: 100%; }
+    .arts-and-src ul li a .date { transition: var(--main-transition); color: #8b8b8b; font-size: 22px !important; }
+    .arts-and-src ul li a:hover .date { color: #3d6498; }
+    @media (max-width: 1200px) and (min-width: 992px) { .arts-and-src ul li a h4 { font-size: 22px !important; } .arts-and-src ul li a .date { font-size: 20px !important; } }
     @media (max-width: 500px) {
-      .arts-and-src {
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-
-      .arts-and-src ul li a h4 {
-        font-size: 20px !important;
-      }
-
-      .arts-and-src ul li a .date {
-        font-size: 18px !important;
-      }
+      .arts-and-src { margin: 0 10px; }
+      .arts-and-src ul li a h4 { font-size: 20px !important; }
+      .arts-and-src ul li a .date { font-size: 18px !important; }
     }
   </style>
 
   <!-- Products Styles -->
   <style>
-    .products,
-    .products * {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      direction: rtl;
-    }
-
-    .products>h3 {
-      font-size: 34px;
-      font-weight: normal;
-      color: #000;
-    }
-
+    .products, .products * { box-sizing: border-box; margin: 0; padding: 0; direction: rtl; }
+    .products>h3 { font-size: 34px; font-weight: normal; color: #000; }
     .products .products-content {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(120px, 1fr));
-      gap: 20px;
+      display: grid; grid-template-columns: repeat(3, minmax(120px, 1fr)); gap: 20px;
     }
-
-    @media (max-width: 1300px) {
-      .products .products-content {
-        grid-template-columns: repeat(2, minmax(120px, 1fr));
-      }
-    }
-
-    @media (max-width: 1200px) and (min-width: 992px) {
-      .products .products-content {
-        grid-template-columns: repeat(1, minmax(120px, 1fr));
-      }
-    }
-
-    @media (max-width: 992px) {
-      .products .products-content {
-        grid-template-columns: repeat(3, minmax(120px, 1fr));
-      }
-    }
-
-    @media (max-width: 767px) {
-      .products .products-content {
-        grid-template-columns: repeat(2, minmax(120px, 1fr));
-      }
-    }
-
-    @media (max-width: 500px) {
-      .products .products-content {
-        grid-template-columns: repeat(1, minmax(120px, 1fr));
-      }
-    }
-
+    @media (max-width: 1300px) { .products .products-content { grid-template-columns: repeat(2, minmax(120px, 1fr)); } }
+    @media (max-width: 1200px) and (min-width: 992px) { .products .products-content { grid-template-columns: repeat(1, minmax(120px, 1fr)); } }
+    @media (max-width: 992px) { .products .products-content { grid-template-columns: repeat(3, minmax(120px, 1fr)); } }
+    @media (max-width: 767px) { .products .products-content { grid-template-columns: repeat(2, minmax(120px, 1fr)); } }
+    @media (max-width: 500px) { .products .products-content { grid-template-columns: repeat(1, minmax(120px, 1fr)); } }
     .products .product {
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 16px;
-      text-decoration: none;
-      color: #000;
-      position: relative;
-      box-shadow: 0px 3px 20px -10px #7a7a7a;
-      transition: var(--main-transition);
+      background: #fff; padding: 10px; border-radius: 16px; text-decoration: none; color: #000;
+      position: relative; box-shadow: 0px 3px 20px -10px #7a7a7a; transition: var(--main-transition);
     }
-
     .products .product::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #3d6498;
-      width: 90%;
-      height: 90%;
-      z-index: -1;
-      border-radius: 20px;
-      transition: var(--main-transition);
+      content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: #3d6498; width: 90%; height: 90%; z-index: -1; border-radius: 20px; transition: var(--main-transition);
     }
-
-    .products .product:hover {
-      background-color: transparent;
-    }
-
-    .products .product:hover::before {
-      width: 105%;
-      height: 105%;
-    }
-
+    .products .product:hover { background: transparent; }
+    .products .product:hover::before { width: 105%; height: 105%; }
     .products .product .category {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: #3d6498;
-      color: #fff;
-      padding-left: 10px;
-      padding-right: 10px;
-      font-weight: normal;
-      font-size: 20px;
-      border-radius: 6px;
+      position: absolute; top: 20px; right: 20px; background: #3d6498; color: #fff;
+      padding: 0 10px; font-weight: normal; font-size: 20px; border-radius: 6px;
     }
-
-    .products .product .category.book {
-      background-color: #0f8083;
-    }
-
-    .products .product .product-img {
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      aspect-ratio: 16/9;
-    }
-
-    .products .product .product-img img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-
-    .products .product .product-text {
-      margin-top: 10px;
-    }
-
-    .products .product .product-text h4 {
-      font-weight: normal;
-      font-size: 24px;
-      color: #000;
-      transition: var(--main-transition);
-      padding-bottom: 10px;
-    }
-
-    .products .product .product-text p {
-      transition: var(--main-transition);
-      font-weight: normal;
-      font-size: 20px;
-      border-top: 1px solid #ccc;
-      padding-top: 10px;
-      color: #575757;
-    }
-
-    .products .product:hover .product-text h4 {
-      color: #fff;
-    }
-
-    .products .product:hover .product-text p {
-      color: #d8d8d8;
-    }
+    .products .product .category.book { background: #0f8083; }
+    .products .product .product-img { border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; width: 100%; aspect-ratio: 16/9; }
+    .products .product .product-img img { object-fit: cover; width: 100%; height: 100%; }
+    .products .product .product-text { margin-top: 10px; }
+    .products .product .product-text h4 { font-weight: normal; font-size: 24px; color: #000; transition: var(--main-transition); padding-bottom: 10px; }
+    .products .product .product-text p { transition: var(--main-transition); font-weight: normal; font-size: 20px; border-top: 1px solid #ccc; padding-top: 10px; color: #575757; }
+    .products .product:hover .product-text h4 { color: #fff; }
+    .products .product:hover .product-text p { color: #d8d8d8; }
   </style>
 
   <!-- General Styles -->
   <style>
-    body {
-      --color-background: #fbfbfb;
-      color: #000;
-    }
-
-    header *,
-    footer *,
-    .newsletter__content * {
-      color: black !important;
-      border-color: black !important;
-    }
-
-    .newsletter__content button {
-      border-color: transparent !important;
-      color: white !important;
-    }
-
-    .newsletter__content {
-      background-color: #eee;
-    }
-
-    .newsletter__content input::placeholder {
-      color: #888 !important;
-    }
-
-    .recent-videos *,
-    .recent-tiktok * {
-      color: #000 !important;
-      font-weight: normal !important;
-      border-color: black !important;
-    }
-
-    .recent-videos h3,
-    .recent-tiktok h3 {
-      font-size: 22px !important;
-      text-align: center
-    }
-
+    body { --color-background: #fbfbfb; color: #000; }
+    header *, footer *, .newsletter__content * { color: black !important; border-color: black !important; }
+    .newsletter__content { background: #eee; }
+    .newsletter__content button { border-color: transparent !important; color: white !important; }
+    .newsletter__content input::placeholder { color: #888 !important; }
+    .recent-videos *, .recent-tiktok * { color: #000 !important; font-weight: normal !important; border-color: black !important; }
+    .recent-videos h3, .recent-tiktok h3 { font-size: 22px !important; text-align: center }
     .recent-videos .button {
-      font-size: 20px !important;
-      padding: 5px 16px;
-      border-radius: 20px;
-      background-color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center border: 1px solid #000;
+      font-size: 20px !important; padding: 5px 16px; border-radius: 20px; background: #fff;
+      display: flex; align-items: center; justify-content: center; border: 1px solid #000;
     }
-
-    .recent-videos .button:hover {
-      background-color: #3d6498;
-      opacity: 1;
-      color: #fff !important
-    }
+    .recent-videos .button:hover { background: #3d6498; opacity: 1; color: #fff !important; }
   </style>
 
   <!-- Whatsapp Button Styles -->
   <style>
     @keyframes vibrate {
-      0% {
-        transform: translateX(0);
-      }
-
-      25% {
-        transform: translateX(-5px) rotate(-5deg);
-      }
-
-      50% {
-        transform: translateX(5px) rotate(5deg);
-      }
-
-      75% {
-        transform: translateX(-5px) rotate(-5deg);
-      }
-
-      100% {
-        transform: translateX(0);
-      }
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px) rotate(-5deg); }
+      50% { transform: translateX(5px) rotate(5deg); }
+      75% { transform: translateX(-5px) rotate(-5deg); }
+      100% { transform: translateX(0); }
     }
-
     .whatsapp-float {
-      position: fixed;
-      width: 50px;
-      height: 50px;
-      bottom: 30px;
-      left: 30px;
-      background-color: #29a71a;
-      color: #fff;
-      border-radius: 50px;
-      text-align: center;
-      font-size: 30px;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position: fixed; width: 50px; height: 50px; bottom: 30px; left: 30px;
+      background-color: #29a71a; color: #fff; border-radius: 50px; text-align: center;
+      font-size: 30px; z-index: 1000; display: flex; justify-content: center; align-items: center;
       animation: vibrate 0.8s ease-in-out infinite;
     }
-
-    .whatsapp-float img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin: 0;
-      padding: 0;
-    }
+    .whatsapp-float img { width: 40px; height: 40px; border-radius: 50%; margin: 0; padding: 0; }
   </style>
 
   <!-- Page Direction Styles -->
   <style>
-    .newsletter__content * {
-      direction: rtl !important;
-    }
-
-    .recent-videos__grid,
-    .recent-videos__header {
-      direction: rtl !important;
-    }
-
-    .recent-videos__header h2 {
-      padding: 0;
-      text-align: right;
-    }
-
-    .recent-videos__header .section-header__cta {
-      margin-left: unset !important;
-      margin-right: unset !important;
-    }
-
-    .recent-videos__header .section-header {
-      flex-direction: row-reverse
-    }
-
-    @media (max-width: 640px) {
-      .recent-videos__header .section-header {
-        flex-direction: row
-      }
-    }
-
-    .recent-videos__header>div>div {
-      margin-left: 0 !important;
-      margin-top: 0 !important;
-      margin: 0 !important;
-      position: unset
-    }
-
-    .newsletter__text>div {
-      font-size: 22px;
-    }
-
-    .newsletter-form__button button {
-      font-size: 22px;
-      padding: 8px 24px !important;
-      border-radius: 16px
-    }
-
-    .newsletter-form__input input {
-      font-size: 22px;
-      padding: 8px 24px !important;
-    }
+    .newsletter__content * { direction: rtl !important; }
+    .recent-videos__grid, .recent-videos__header { direction: rtl !important; }
+    .recent-videos__header h2 { padding: 0; text-align: right; }
+    .recent-videos__header .section-header__cta { margin-left: unset !important; margin-right: unset !important; }
+    .recent-videos__header .section-header { flex-direction: row-reverse; }
+    @media (max-width: 640px) { .recent-videos__header .section-header { flex-direction: row; } }
+    .recent-videos__header>div>div { margin: 0 !important; position: unset; }
+    .newsletter__text>div { font-size: 22px; }
+    .newsletter-form__button button { font-size: 22px; padding: 8px 24px !important; border-radius: 16px; }
+    .newsletter-form__input input { font-size: 22px; padding: 8px 24px !important; }
   </style>
 </head>
 
 <body>
 
-  <!-- SIDEBAR -->
-  <aside id="added-sidebar">
-    <button onclick="document.querySelector('#added-sidebar').classList.toggle('shown')">
-      <span>≡</span>
-      <span>✕</span>
-    </button>
-    <div class="owner-info">
-      <a href="/">
-        <span>
-          <img src="https://imgproxy.fourthwall.com/WXR3bUDTxfJDawOu8owskI9DYR9ojOvieJYo1O_6y1w/w:70/dpr:2/sm:1/enc/FiovU4bktSuCdVo9/y2sR7RW9FFyU3A6U/CVtfHlY1ELpi3reu/CJzAwHHjjBjj6HGc/IddErYMHx7GOEKVn/csKXnRLMnYDqbES_/Gu3ziyHdFQyY1qSR/va8ysQvr5qm79rZd/jwz4xjkGbOr1ozTQ/_eTlYOka83hD1-MD/33eT99xQvPM5ptGj/DkVzCK0rxtvcRKfG/qdJdLAoJ3rLjOo2n/Cr4TJVw1hzCc7oec/_UOGx1rEdSmcMIAl/A4cz91ud7agMY4lw" alt="">
-        </span>
-        <h4>مُـحمـد النّـجـار</h4>
-        <p>مساعدك الأكاديمي</p>
-      </a>
-    </div>
-    <nav class="sidebar-nav">
-      <a href="/#products">المنتجات</a>
-      <a href="/#services">الخدمات</a>
-      <a href="/#resources">المقالات</a>
-      <a href="https://youtube.com/playlist?list=PL9GrBMsvivVXepashqv9Ws02J2UFClzti&si=kI1bLh3YxnfoGSIz" target="_blank">بودكاست طويلب علم</a>
-    </nav>
-    <div class="more-links">
-      <a href="http://wa.me/201558087630" class="whatsapp-sidebar" target="_blank">تواصل معي</a>
-      <a href="/advising-session">الاستشارات</a>
-    </div>
-    <div class="overlay"></div>
-  </aside>
-
   <!-- MAIN CONTENT -->
   <main>
-
     <!-- Header Banner -->
     <section class="text-banner">
       <div class="text-banner-header">
-        <h4>
-          متاح للاستشارات
-        </h4>
-        <a href="https://muhamedelnaggar.com/pages/advising-session" class="button-link">
-          احجز موعدك
-        </a>
+        <h4>متاح للاستشارات</h4>
+        <a href="https://muhamedelnaggar.com/pages/advising-session" class="button-link">احجز موعدك</a>
       </div>
       <p>
         البحث العلمي بذكاء و باللغة العربية.
         <br>
-        <span>
-          أساعد الباحثين و طلبة الدراسات العليا في مشاريعهم البحثية من صياغة الفكرة حتي النشر الأكاديمي.
-        </span>
+        <span>أساعد الباحثين و طلبة الدراسات العليا في مشاريعهم البحثية من صياغة الفكرة حتي النشر الأكاديمي.</span>
       </p>
       <div class="text-banner-buttons">
         <a href="#services">الخدمات</a>
@@ -1328,9 +327,7 @@
 
     <!-- Services -->
     <section id="services" class="services">
-      <div class="section-header">
-        الخدمات الأكاديمية
-      </div>
+      <div class="section-header">الخدمات الأكاديمية</div>
       <ul class="services-links">
         <li>
           <a href="/advising-session">
@@ -1341,9 +338,7 @@
                   <path id="primary" d="M16,9.52l3.63-1.45A1,1,0,0,1,21,9v6a1,1,0,0,1-1.37.93L16,14.48ZM16,17V9a3,3,0,0,0-3-3H4A1,1,0,0,0,3,7v8a3,3,0,0,0,3,3h9A1,1,0,0,0,16,17Z" style="fill: none; stroke: #f9f8ff; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
                 </svg>
               </div>
-              <div class="text">
-                <p>الجلسة الاستشارية</p>
-              </div>
+              <div class="text"><p>الجلسة الاستشارية</p></div>
             </div>
           </a>
         </li>
@@ -1357,9 +352,7 @@
                   <path d="M0 9H4V15H0V9Z" fill="#f9f8ff" />
                 </svg>
               </div>
-              <div class="text">
-                <p>التحليلات الإحصائية</p>
-              </div>
+              <div class="text"><p>التحليلات الإحصائية</p></div>
             </div>
           </a>
         </li>
@@ -1372,9 +365,7 @@
                   <path fill="#f9f8ff" d="m220.8 256-71.232 80 71.168 80H768V256H220.8zm-14.4-64H800a32 32 0 0 1 32 32v224a32 32 0 0 1-32 32H206.4a32 32 0 0 1-23.936-10.752l-99.584-112a32 32 0 0 1 0-42.496l99.584-112A32 32 0 0 1 206.4 192zm678.784 496-71.104 80H266.816V608h547.2l71.168 80zm-56.768-144H234.88a32 32 0 0 0-32 32v224a32 32 0 0 0 32 32h593.6a32 32 0 0 0 23.936-10.752l99.584-112a32 32 0 0 0 0-42.496l-99.584-112A32 32 0 0 0 828.48 544z" />
                 </svg>
               </div>
-              <div class="text">
-                <p>برنامج التوجيه والإرشاد</p>
-              </div>
+              <div class="text"><p>برنامج التوجيه والإرشاد</p></div>
             </div>
           </a>
         </li>
@@ -1386,9 +377,7 @@
                   <path d="M17.093,1.293l-11.2,11.2a.99.99,0,0,0-.242.391l-1.6,4.8A1,1,0,0,0,5,19a1.014,1.014,0,0,0,.316-.051l4.8-1.6a1.006,1.006,0,0,0,.391-.242l11.2-11.2a1,1,0,0,0,0-1.414l-3.2-3.2A1,1,0,0,0,17.093,1.293ZM9.26,15.526l-2.679.893.893-2.679L17.8,3.414,19.586,5.2ZM3,21H20a1,1,0,0,1,0,2H3a1,1,0,0,1,0-2Z" />
                 </svg>
               </div>
-              <div class="text">
-                <p>المراجعة اللغوية والتدقيق</p>
-              </div>
+              <div class="text"><p>المراجعة اللغوية والتدقيق</p></div>
             </div>
           </a>
         </li>
@@ -1398,59 +387,24 @@
     <!-- Stats -->
     <div class="stats">
       <div class="stat">
-        <div class="icon">
-          <img src="https://pub-710a62c9b895412ebf7725a080e69d50.r2.dev/stars.svg" alt="">
-        </div>
-        <h2>
-          +٦
-        </h2>
-        <p>
-          سنوات الخبرة
-        </p>
+        <div class="icon"><img src="https://pub-710a62c9b895412ebf7725a080e69d50.r2.dev/stars.svg" alt=""></div>
+        <h2>+٦</h2><p>سنوات الخبرة</p>
       </div>
       <div class="stat">
-        <div class="icon">
-          <img src="https://pub-710a62c9b895412ebf7725a080e69d50.r2.dev/complete.svg" alt="">
-        </div>
-        <h2>
-          ٢١٧
-        </h2>
-        <p>
-          مشروع مكتمل
-        </p>
+        <div class="icon"><img src="https://pub-710a62c9b895412ebf7725a080e69d50.r2.dev/complete.svg" alt=""></div>
+        <h2>٢١٧</h2><p>مشروع مكتمل</p>
       </div>
       <div class="stat">
-        <div class="icon">
-          <img src="https://pub-710a62c9b895412ebf7725a080e69d50.r2.dev/smiley-face-white.svg" alt="">
-        </div>
-        <h2>
-          ٩٧٪
-        </h2>
-        <p>
-          رضا العملاء
-        </p>
+        <div class="icon"><img src="https://pub-710a62c9b895412ebf7725a080e69d50.r2.dev/smiley-face-white.svg" alt=""></div>
+        <h2>٩٧٪</h2><p>رضا العملاء</p>
       </div>
       <div class="stat">
-        <div class="icon">
-          <img src="https://pub-710a62c9b895412ebf7725a080e69d50.r2.dev/consultant.svg" alt="">
-        </div>
-        <h2>
-          +٢٠٠
-        </h2>
-        <p>
-          استشارة بحثية
-        </p>
+        <div class="icon"><img src="https://pub-710a62c9b895412ebf7725a080e69d50.r2.dev/consultant.svg" alt=""></div>
+        <h2>+٢٠٠</h2><p>استشارة بحثية</p>
       </div>
       <div class="stat">
-        <div class="icon">
-          <img src="https://pub-710a62c9b895412ebf7725a080e69d50.r2.dev/youtube-logo-white.svg" alt="">
-        </div>
-        <h2>
-          ١ مليون
-        </h2>
-        <p>
-          مشاهدة على يوتيوب
-        </p>
+        <div class="icon"><img src="https://pub-710a62c9b895412ebf7725a080e69d50.r2.dev/youtube-logo-white.svg" alt=""></div>
+        <h2>١ مليون</h2><p>مشاهدة على يوتيوب</p>
       </div>
     </div>
 
@@ -1459,61 +413,42 @@
       <h2 class="trusted">نفخر بخدمة طلاب هذه الجامعات</h2>
       <div class="slider">
         <div class="slide-track" id="slideTrack">
-          <div class="slider-container">
-          </div>
+          <div class="slider-container"></div>
         </div>
       </div>
     </section>
 
     <!-- Products -->
     <section id="products" class="products">
-      <h3>
-        المنتجات
-      </h3>
+      <h3>المنتجات</h3>
       <div class="products-content">
         <a href="https://muhamedelnaggar.com/pages/searching_databases" target="_blank" class="product">
-          <span class="category course">
-            دورة مسجّلة
-          </span>
+          <span class="category course">دورة مسجّلة</span>
           <div class="product-img">
             <img src="https://pub-64af06a41e8a4e9b9b858754a4aa63f9.r2.dev/course-3.jpg" alt="">
           </div>
           <div class="product-text">
-            <h4>
-              المهارة الأهم لكل باحث: كيف تبحث بكفاءة لإعداد مراجعة منهجية
-            </h4>
-            <p>
-              Master the basics of database searching: Learn how to search PubMed, Scopus, and Web of Science.
-            </p>
+            <h4>المهارة الأهم لكل باحث: كيف تبحث بكفاءة لإعداد مراجعة منهجية</h4>
+            <p>Master the basics of database searching: Learn how to search PubMed, Scopus, and Web of Science.</p>
           </div>
         </a>
         <a href="/course-2" class="product">
-          <span class="category course">
-            دورة مسجّلة
-          </span>
+          <span class="category course">دورة مسجّلة</span>
           <div class="product-img">
             <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect_1017-31453.jpg?semt=ais_items_boosted&w=740" alt="">
           </div>
           <div class="product-text">
-            <h4>
-              مقدمة في الإحصاء الحيوي للأطباء
-            </h4>
-            <p>
-              أساسيات التحليل الإحصائي لفهم وتفسير الأبحاث الطبية بطريقة علمية مبسطة
-            </p>
+            <h4>مقدمة في الإحصاء الحيوي للأطباء</h4>
+            <p>أساسيات التحليل الإحصائي لفهم وتفسير الأبحاث الطبية بطريقة علمية مبسطة</p>
           </div>
         </a>
         <a href="/book-1" class="product">
-          <span class="category book">
-            كتيب مجاني
-          </span>
+          <span class="category book">كتيب مجاني</span>
           <div class="product-img">
             <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect_1017-31453.jpg?semt=ais_items_boosted&w=740" alt="">
           </div>
           <div class="product-text">
-            <h4>
-              خطوة بخطوة لكتابة المراجعة المنهجية والتحليل التلوي
-            </h4>
+            <h4>خطوة بخطوة لكتابة المراجعة المنهجية والتحليل التلوي</h4>
           </div>
         </a>
       </div>
@@ -1521,52 +456,34 @@
 
     <!-- Resources -->
     <section id="resources" class="arts-and-src">
-      <div class="section-header">
-        المقالات والمصادر
-      </div>
+      <div class="section-header">المقالات والمصادر</div>
       <ul class="arts-and-src-links">
         <li>
           <a href="/master-stats">
-            <h4 class="title">
-              ازاي تعمل الإحصاء بتاعت الرسالة بتاعتك
-            </h4>
+            <h4 class="title">ازاي تعمل الإحصاء بتاعت الرسالة بتاعتك</h4>
             <span class="line"></span>
-            <p class="date">
-              Oct 7, 2024
-            </p>
+            <p class="date">Oct 7, 2024</p>
           </a>
         </li>
         <li>
           <a href="/reviews-types">
-            <h4 class="title">
-              الفرق بين أنواع الريفيوهات العلمية
-            </h4>
+            <h4 class="title">الفرق بين أنواع الريفيوهات العلمية</h4>
             <span class="line"></span>
-            <p class="date">
-              Oct 7, 2024
-            </p>
+            <p class="date">Oct 7, 2024</p>
           </a>
         </li>
         <li>
           <a href="/risk-of-bias-assesment">
-            <h4 class="title">
-              الدليل الشامل للrisk of bias assesment
-            </h4>
+            <h4 class="title">الدليل الشامل للrisk of bias assesment</h4>
             <span class="line"></span>
-            <p class="date">
-              Oct 5, 2024
-            </p>
+            <p class="date">Oct 5, 2024</p>
           </a>
         </li>
         <li>
           <a href="/telegram-bot">
-            <h4 class="title">
-              أداة التليجرام لتعلم البحث العلمي
-            </h4>
+            <h4 class="title">أداة التليجرام لتعلم البحث العلمي</h4>
             <span class="line"></span>
-            <p class="date">
-              Jan 10, 2024
-            </p>
+            <p class="date">Jan 10, 2024</p>
           </a>
         </li>
       </ul>
@@ -1580,79 +497,27 @@
 
   <!-- Scripts -->
   <script>
-    // Sidebar Script
-    document.querySelectorAll('#added-sidebar a[href^="/#"]').forEach(link => {
-      link.addEventListener('click', function(e) {
-        // Check if it's a mobile view
-        if (window.innerWidth <= 992) {
-          document.getElementById('added-sidebar').classList.remove('shown');
-        }
-      });
-    });
-    document.querySelector('#added-sidebar .overlay').addEventListener('click', function(e) {
-      // Check if it's a mobile view
-      if (window.innerWidth <= 992) {
-        document.getElementById('added-sidebar').classList.remove('shown');
-      }
-    });
     // Whatsapp Script
     setTimeout(() => {
       const whatsappIcon = document.querySelector('.whatsapp-float');
-      whatsappIcon.style.animation = 'none';
+      if (whatsappIcon) whatsappIcon.style.animation = 'none';
     }, 3000);
+
     // Slider Script
     document.addEventListener('DOMContentLoaded', function() {
       const slideTrack = document.getElementById('slideTrack');
-      // Find the existing slider container from your HTML
       const sliderContainer = slideTrack.querySelector('.slider-container');
-      // Original slides data
-      const slides = [{
-          src: "https://i.imgur.com/jnzYafu.png",
-          alt: "",
-          text: "كلية الملك في لندن"
-        },
-        {
-          src: "https://i.imgur.com/pCPbVwi.png",
-          alt: "",
-          text: "جامعة نوتنغهام"
-        },
-        {
-          src: "https://i.imgur.com/Df2upTu.png",
-          alt: "",
-          text: "جامعة الملك سعود"
-        },
-        {
-          src: "https://i.imgur.com/sGZ8qzB.png",
-          alt: "",
-          text: "جامعة عين شمس"
-        },
-        {
-          src: "https://i.imgur.com/MY5jImA.png",
-          alt: "",
-          text: "جامعة القاهرة"
-        },
-        {
-          src: "https://i.imgur.com/wkQdJfS.png",
-          alt: "",
-          text: "الجامعة البريطانية في مصر"
-        },
-        {
-          src: "https://i.imgur.com/skaYHU4.png",
-          alt: "",
-          text: "جامعة الملك خالد"
-        },
-        {
-          src: "https://i.imgur.com/V1WnmMu.png",
-          alt: "",
-          text: "جامعة دبلن"
-        },
-        {
-          src: "https://i.imgur.com/JwYG3B5.png",
-          alt: "",
-          text: "جامعة الملك عبد الله للعلوم التكنولوجيا"
-        }
+      const slides = [
+        { src: "https://i.imgur.com/jnzYafu.png", alt: "", text: "كلية الملك في لندن" },
+        { src: "https://i.imgur.com/pCPbVwi.png", alt: "", text: "جامعة نوتنغهام" },
+        { src: "https://i.imgur.com/Df2upTu.png", alt: "", text: "جامعة الملك سعود" },
+        { src: "https://i.imgur.com/sGZ8qzB.png", alt: "", text: "جامعة عين شمس" },
+        { src: "https://i.imgur.com/MY5jImA.png", alt: "", text: "جامعة القاهرة" },
+        { src: "https://i.imgur.com/wkQdJfS.png", alt: "", text: "الجامعة البريطانية في مصر" },
+        { src: "https://i.imgur.com/skaYHU4.png", alt: "", text: "جامعة الملك خالد" },
+        { src: "https://i.imgur.com/V1WnmMu.png", alt: "", text: "جامعة دبلن" },
+        { src: "https://i.imgur.com/JwYG3B5.png", alt: "", text: "جامعة الملك عبد الله للعلوم التكنولوجيا" }
       ];
-      // Function to create a slide element
       function createSlide(slideData) {
         const slide = document.createElement('div');
         slide.className = 'slide';
@@ -1665,16 +530,9 @@
         slide.appendChild(text);
         return slide;
       }
-      // Add slides to the container (twice for seamless looping)
-      slides.forEach(slideData => {
-        sliderContainer.appendChild(createSlide(slideData));
-      });
-      // Clone slides for infinite effect
-      slides.forEach(slideData => {
-        sliderContainer.appendChild(createSlide(slideData));
-      });
+      slides.forEach(s => sliderContainer.appendChild(createSlide(s)));
+      slides.forEach(s => sliderContainer.appendChild(createSlide(s))); // clone for loop
     });
   </script>
 </body>
-
 </html>
